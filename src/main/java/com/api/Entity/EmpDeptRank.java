@@ -1,5 +1,7 @@
 package com.api.Entity;
 
+import org.hibernate.annotations.UuidGenerator;
+
 import com.api.DAO.DepartmentDao;
 import com.api.DAO.RankDao;
 
@@ -21,8 +23,8 @@ public class EmpDeptRank {
 	private Integer salary;
 
 	private String reportsto;
-
-
+	
+	@UuidGenerator
 	private String client_reqid;
 	
 	

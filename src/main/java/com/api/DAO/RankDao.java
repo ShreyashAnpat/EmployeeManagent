@@ -1,6 +1,5 @@
 package com.api.DAO;
 
-import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
