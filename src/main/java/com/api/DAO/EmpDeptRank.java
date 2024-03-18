@@ -1,16 +1,12 @@
-package com.api.Entity;
+package com.api.DAO;
 
 import org.hibernate.annotations.UuidGenerator;
-
-import com.api.DAO.DepartmentDao;
-import com.api.DAO.RankDao;
 
 import lombok.Data;
 
 @Data
 public class EmpDeptRank {
 
-	private String id;
 	
 	private String empid;
 

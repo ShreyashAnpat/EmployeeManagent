@@ -1,7 +1,6 @@
 package com.api.DAO;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 
 public class ResponceHandler {
 	
-	public static ResponseEntity<?> ResponceHandler(Object responseObj,HttpStatus status_code ,String reqid ,String...message  ){
+	public static ResponseEntity<?> responceHandler(Object responseObj,HttpStatus status_code ,String reqid ,String...message  ){
 			
 		String status = "error" ;
 		LocalDateTime timestamp =  LocalDateTime.now(ZoneId.of("GMT+08:00"));

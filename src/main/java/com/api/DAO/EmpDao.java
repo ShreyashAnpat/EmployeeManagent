@@ -5,8 +5,6 @@ import lombok.Data;
 @Data
 public class EmpDao {
 
-	private String id;
-	
 	private String empid;
 
 	private String fname;
@@ -19,9 +17,7 @@ public class EmpDao {
 
 	private String reportsto;
 
-
 	private String client_reqid;
-	
 	
 	private String  deptid; // Department
 

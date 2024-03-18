@@ -14,5 +14,8 @@ public interface EmpRepo extends JpaRepository<Employee, String> {
 	
 	@Query(nativeQuery = true , value = "Select * from Employee where deptid_id =:deptId")
 	public Optional<List<Employee>> getByDept(String deptId);
+	
+	@Query(nativeQuery = true , value = "Select * from Employee where empid =:empId")
+	public Optional<Employee> findByempid(String empId);
 
 }

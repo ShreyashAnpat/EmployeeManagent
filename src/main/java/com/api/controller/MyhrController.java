@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.DAO.DepartmentDao;
 import com.api.DAO.EmpDao;
+import com.api.DAO.EmpDeptRank;
 import com.api.DAO.RankDao;
-import com.api.Entity.EmpDeptRank;
 import com.api.service.DepartmentService;
 import com.api.service.EmpService;
 import com.api.service.RankService;

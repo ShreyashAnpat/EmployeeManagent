@@ -19,11 +19,12 @@ import lombok.Data;
 
 @Entity
 @Data
-@EntityListeners(AuditingEntityListener.class)
 public class Employee {
 	
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", updatable = false, nullable = false)
+	private Integer id;
 	
 	@Column(unique = true)
 	private String empid;
