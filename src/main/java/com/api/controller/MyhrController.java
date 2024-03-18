@@ -1,7 +1,9 @@
 package com.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +18,13 @@ import com.api.DAO.RankDao;
 import com.api.service.DepartmentService;
 import com.api.service.EmpService;
 import com.api.service.RankService;
+
+import jakarta.validation.Valid;
+
+
 @RestController
 @RequestMapping("/myhr")
+@Validated
 public class MyhrController {
 	
 	@Autowired
@@ -30,7 +37,7 @@ public class MyhrController {
 	private RankService rankService ;
 	
 	@PostMapping(value = "/employee/add")
-	public ResponseEntity<?> employeeadd(@RequestBody EmpDao emp){	
+	public ResponseEntity<?> employeeadd(@Valid @RequestBody EmpDao emp){	
 		return empService.addEmp(emp);
 	}
 	
@@ -40,7 +47,7 @@ public class MyhrController {
 	}
 	
 	@PostMapping("/department/add")
-	public ResponseEntity<?> addDepartment(@RequestBody DepartmentDao dept){
+	public ResponseEntity<?> addDepartment(@Valid @RequestBody DepartmentDao dept){
 		return  deptService.addDepartment(dept) ;
 	}
 	
@@ -50,7 +57,7 @@ public class MyhrController {
 	}
 	
 	@PostMapping("/rank/add")
-	public ResponseEntity<?> addRank(@RequestBody RankDao rankdao){
+	public ResponseEntity<?> addRank(@Valid  @RequestBody RankDao rankdao){
 		return  rankService.addRank(rankdao) ;
 	}
 	
@@ -59,14 +66,17 @@ public class MyhrController {
 		return rankService.getAllRank();
 	}
 
+	
 	@GetMapping("/employee/getAllEmp/{deptId}")
 	public ResponseEntity<?> getAllEmpByDeptId(@PathVariable("deptId") String deptId){
 		return empService.getAllEmpByDept(deptId);
 	}
 	
 	@PostMapping("/employee/addEmpWithRankAndDept")
-	public ResponseEntity<?> addEmpWithRankAndDept(@RequestBody EmpDeptRank EmpDeptRank ){
+	public ResponseEntity<?> addEmpWithRankAndDept(@Valid  @RequestBody EmpDeptRank EmpDeptRank ){
+//		return new ResponseEntity<>(EmpDeptRank , HttpStatus.OK);
 		return empService.addEmpWithRankAndDept(EmpDeptRank );
 	}
+	
 	
 }

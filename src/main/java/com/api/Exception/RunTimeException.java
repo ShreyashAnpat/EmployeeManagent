@@ -9,6 +9,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class RunTimeException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String RequesId ;
 	HttpStatus status ;
 	

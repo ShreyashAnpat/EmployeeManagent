@@ -23,7 +23,6 @@ public class DepartmentService {
 	public ResponseEntity<?> addDepartment(DepartmentDao deptDao) {
 
 		Boolean isDepartmentPresent = repo.findById(deptDao.getId()).isPresent();
-
 		if (isDepartmentPresent)
 			throw new RunTimeException ("Department Already Exist", HttpStatus.NOT_FOUND, "");
 
@@ -31,6 +30,7 @@ public class DepartmentService {
 		dept.setId(deptDao.getId());
 		dept.setDeptname(deptDao.getDeptname());
 		repo.save(dept);
+		
 		return ResponceHandler.responceHandler("Department Added Successfuly.", HttpStatus.OK, "");
 
 	}

@@ -1,6 +1,5 @@
 package com.api.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,22 +38,22 @@ public class EmpService {
 		if (!empExist) {
 
 			DepartmentDao dep = empDeptRank.getDept();
-			Department deptData;
+			Department deptData = new Department() ;
 			ResponseEntity<?> deptResponEntity = deptService.addDepartment(dep);
-			if (deptResponEntity.getStatusCode() == HttpStatus.OK) {
-				@SuppressWarnings("unchecked")
-				Map<String, Object>  resp = (Map<String, Object>) deptResponEntity.getBody();
-				deptData = (Department) resp.get("data");
+			if (deptResponEntity.getStatusCode() == HttpStatus.OK) {		
+				deptData.setId(dep.getId()); 
+				deptData.setDeptname(dep.getDeptname());
 			} else {
-				System.out.println(deptResponEntity.getBody());
 				return deptResponEntity;
 			}
 
-			Ranks ranks;
+			Ranks ranks = new Ranks() ;
 			RankDao rankDao = empDeptRank.getRank();
 			ResponseEntity<?> rankResponceEntity = rankService.addRank(rankDao);
 			if (rankResponceEntity.getStatusCode() == HttpStatus.OK) {
-				ranks = (Ranks) rankResponceEntity.getBody();
+				ranks.setId(rankDao.getId());
+				ranks.setParentrankid(rankDao.getParentrankid());
+				ranks.setRankdesc(ranks.getParentrankid());
 			} else {
 				return rankResponceEntity;
 			}
