@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.api.DAO.ResponceHandler;
 
@@ -38,6 +40,19 @@ public class ExceptionHandlers {
 	}
 	
 
+	@ExceptionHandler(NoResourceFoundException.class)
+	@ResponseStatus( HttpStatus.BAD_REQUEST )
+	public ResponseEntity<?> noResourceFoundException(NoResourceFoundException ex) {
+		return ResponceHandler.responceHandler("", HttpStatus.BAD_REQUEST , "", "Invalid Method ");
+	}
+	
+	
+	@ExceptionHandler(MissingServletRequestParameterException.class)
+	@ResponseStatus( HttpStatus.BAD_REQUEST )
+	public ResponseEntity<?> noResourceFoundException(MissingServletRequestParameterException ex) {
+		return ResponceHandler.responceHandler("", HttpStatus.BAD_REQUEST , "", ex.getMessage());
+	}
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus( HttpStatus.BAD_REQUEST )
 	public ResponseEntity<?> methodArgsNotValidException(MethodArgumentNotValidException ex) {		
@@ -47,5 +62,8 @@ public class ExceptionHandlers {
         }
 		return ResponceHandler.responceHandler("", HttpStatus.BAD_REQUEST, "",errors.toString());
 	}
+	
+	
+	
 	
 }
